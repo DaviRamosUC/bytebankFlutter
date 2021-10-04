@@ -60,6 +60,13 @@ class FormularioTransferencia extends StatelessWidget {
                 if (numeroConta != null && valor != null) {
                   final transferenciaCriada = Transferencia(valor, numeroConta);
                   debugPrint('$transferenciaCriada');
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Transferência realizada $transferenciaCriada'),
+                    action: SnackBarAction(
+                      label: 'Ok',
+                      onPressed: () {},
+                    ),
+                  ));
                 }
               },
               child: Text(
