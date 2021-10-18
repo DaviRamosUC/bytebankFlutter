@@ -1,3 +1,4 @@
+import 'package:bytebank_2/components/centered_menssage.dart';
 import 'package:bytebank_2/components/progress.dart';
 import 'package:bytebank_2/database/dao/contact_dao.dart';
 import 'package:bytebank_2/models/contact.dart';
@@ -29,16 +30,16 @@ class _ContactsListState extends State<ContactsList> {
             case ConnectionState.active:
               break;
             case ConnectionState.done:
-              final List<Contact>? contacts = snapshot.data;
+              final List<Contact> contacts = snapshot.data ?? [];
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final Contact contact = contacts![index];
+                  final Contact contact = contacts[index];
                   return _ContactItem(contact);
                 },
-                itemCount: contacts!.length,
+                itemCount: contacts.length,
               );
           }
-          return Text('Unknow error');
+          return CenteredMessage('Unknown error');
         },
       ),
       floatingActionButton: FloatingActionButton(
