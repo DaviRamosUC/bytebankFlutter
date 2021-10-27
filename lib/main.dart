@@ -1,7 +1,15 @@
 import 'package:bytebank_2/screens/dashboard.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
-void main() {
+void main() async {
+  //Inicio da integração com o crashlytics
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  //Fim da integração com o crashlytics
+
   runApp(Bytebank());
 }
 
