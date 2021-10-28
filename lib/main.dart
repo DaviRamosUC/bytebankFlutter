@@ -7,6 +7,8 @@ void main() async {
   //Inicio da integração com o crashlytics
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  //Criando identificado do usuário para o erro;
+  FirebaseCrashlytics.instance.setUserIdentifier('alura123');
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   //Fim da integração com o crashlytics
 
