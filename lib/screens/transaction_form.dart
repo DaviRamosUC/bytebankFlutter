@@ -8,6 +8,7 @@ import 'package:bytebank_2/models/contact.dart';
 import 'package:bytebank_2/models/transaction.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:uuid/uuid.dart';
 
 class TransactionForm extends StatefulWidget {
@@ -24,10 +25,12 @@ class _TransactionFormState extends State<TransactionForm> {
   final TransactionWebClient _webClient = TransactionWebClient();
   final String transactionId = Uuid().v4();
   bool _sending = false;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('New transaction'),
       ),
@@ -178,10 +181,24 @@ class _TransactionFormState extends State<TransactionForm> {
 
   void _showFailureMessage(BuildContext context,
       {String message = 'Unknown error'}) {
-    showDialog(
-        context: context,
-        builder: (contextDiolog) {
-          return FailureDialog(message);
-        });
+    showToast(message);
+    // final snackBar = SnackBar(content: Text(message));
+    // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    // showDialog(
+    //     context: context,
+    //     builder: (contextDiolog) {
+    //       return FailureDialog(message);
+    //     });
+  }
+
+  void showToast(String msg,
+      {int duration = 5, ToastGravity gravity = ToastGravity.BOTTOM}) {
+    Fluttertoast.showToast(
+        msg: msg,
+        gravity: gravity,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 }
