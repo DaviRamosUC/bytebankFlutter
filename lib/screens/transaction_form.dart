@@ -108,11 +108,9 @@ class _TransactionFormState extends State<TransactionForm> {
     );
   }
 
-  void _save(
-    Transaction transactionCreated,
-    String password,
-    BuildContext context,
-  ) async {
+  void _save(Transaction transactionCreated,
+      String password,
+      BuildContext context,) async {
     Transaction? transaction = await _send(
       transactionCreated,
       password,
@@ -121,8 +119,8 @@ class _TransactionFormState extends State<TransactionForm> {
     _showSuccessfulMessage(transaction, context);
   }
 
-  Future<void> _showSuccessfulMessage(
-      Transaction? transaction, BuildContext context) async {
+  Future<void> _showSuccessfulMessage(Transaction? transaction,
+      BuildContext context) async {
     if (transaction != null) {
       await showDialog(
           context: context,
