@@ -1,6 +1,7 @@
-import 'package:bytebank_2/screens/contato/contacts_list.dart';
 import 'package:bytebank_2/screens/dashboard/saldoCard.dart';
 import 'package:bytebank_2/screens/deposito/formulario.dart';
+import 'package:bytebank_2/screens/transferencia/formulario.dart';
+import 'package:bytebank_2/screens/transferencia/ultimas.dart';
 import 'package:flutter/material.dart';
 
 class DashboardSec extends StatelessWidget {
@@ -30,12 +31,13 @@ class DashboardSec extends StatelessWidget {
                 child: Text('Nova Transferência'),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ContactsList();
+                    return FormularioTransferencia();
                   }));
                 },
               ),
             ],
           ),
+          UltimasTransferencias()
         ]));
   }
 }
