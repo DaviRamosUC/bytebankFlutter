@@ -1,3 +1,4 @@
+import 'package:bytebank_2/screens/contato/contacts_list.dart';
 import 'package:bytebank_2/screens/dashboard/saldoCard.dart';
 import 'package:bytebank_2/screens/deposito/formulario.dart';
 import 'package:flutter/material.dart';
@@ -14,17 +15,27 @@ class DashboardSec extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: SaldoCard(),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 24, right: 24, top: 16),
-            child: ElevatedButton(
-              child: Text('Receber depósito'),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return FormularioDeposito();
-                }));
-              },
-            ),
-          )
+          ButtonBar(
+            alignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                child: Text('Receber depósito'),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return FormularioDeposito();
+                  }));
+                },
+              ),
+              ElevatedButton(
+                child: Text('Nova Transferência'),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ContactsList();
+                  }));
+                },
+              ),
+            ],
+          ),
         ]));
   }
 }

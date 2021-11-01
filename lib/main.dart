@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:bytebank_2/models/saldo.dart';
+import 'package:bytebank_2/models/transferencias.dart';
 import 'package:bytebank_2/screens/Dashboard/dashboardSec.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+
 
 void main() async {
   //Inicio da zona guardada de erro para o crashlytics
@@ -23,10 +26,23 @@ void main() async {
       FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
     }
     //Fim da integração com o crashlytics
-    runApp(ChangeNotifierProvider(create: (context) => Saldo(0),
-    child: Bytebank(),));
+    runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => Saldo(0),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => Transferencias(),
+          ),
+        ],
+        child: Bytebank(),
+      ),
+    );
   }, (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack));
 }
+
+
 
 class Bytebank extends StatelessWidget {
   @override
