@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:bytebank_2/screens/dashboard.dart';
+import 'package:bytebank_2/screens/dashboardSec.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
+import 'package:flutter/material.dart';
 
 void main() async {
   //Inicio da zona guardada de erro para o crashlytics
@@ -41,7 +41,7 @@ class Bytebank extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: Dashboard(),
+      home: DashboardSec(),
     );
   }
 }
