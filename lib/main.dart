@@ -1,6 +1,8 @@
 import 'package:bytebank_2/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
+import 'components/theme.dart';
+
 void main() {
   runApp(Bytebank());
 }
@@ -10,17 +12,7 @@ class Bytebank extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.green[900],
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: Colors.green[900],
-          secondary: Colors.blueAccent[700],
-        ),
-        buttonTheme: ButtonThemeData(
-          buttonColor: Colors.blueAccent[700],
-          textTheme: ButtonTextTheme.primary,
-        ),
-      ),
+      theme: bytebankTheme,
       home: Dashboard(),
     );
   }
