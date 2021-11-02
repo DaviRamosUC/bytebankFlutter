@@ -1,10 +1,19 @@
 import 'package:bytebank_2/components/centered_menssage.dart';
+import 'package:bytebank_2/components/container.dart';
 import 'package:bytebank_2/components/progress.dart';
 import 'package:bytebank_2/database/dao/contact_dao.dart';
 import 'package:bytebank_2/models/contact.dart';
 import 'package:bytebank_2/screens/contact_form.dart';
 import 'package:bytebank_2/screens/transaction_form.dart';
 import 'package:flutter/material.dart';
+
+class ContactsListContainer extends BlocContainer{
+  @override
+  Widget build(BuildContext context) {
+    return ContactsList();
+  }
+
+}
 
 class ContactsList extends StatefulWidget {
   @override

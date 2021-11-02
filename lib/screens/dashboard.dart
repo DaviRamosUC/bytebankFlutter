@@ -1,10 +1,12 @@
+import 'package:bytebank_2/components/container.dart';
+import 'package:bytebank_2/models/name.dart';
 import 'package:bytebank_2/screens/contacts_list.dart';
 import 'package:bytebank_2/screens/name.dart';
 import 'package:bytebank_2/screens/transactions_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DashboardContainer extends StatelessWidget {
+class DashboardContainer extends BlocContainer {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -60,33 +62,25 @@ class DashboardView extends StatelessWidget {
       ),
     );
   }
-}
 
-void _showTransactionsList(BuildContext context) {
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => TransactionsList(),
-    ),
-  );
-}
+  void _showTransactionsList(BuildContext context) {
+    push(context, TransactionsListContainer());
+  }
 
-void _showContactsList(BuildContext context) {
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => ContactsList(),
-    ),
-  );
-}
+  void _showContactsList(BuildContext context) {
+    push(context, ContactsListContainer());
+  }
 
-void _showChangeName(BuildContext blocContext) {
-  Navigator.of(blocContext).push(
-    MaterialPageRoute(
-      builder: (context) => BlocProvider.value(
-        value: BlocProvider.of<NameCubit>(blocContext),
-        child: NameContainer(),
+  void _showChangeName(BuildContext blocContext) {
+    Navigator.of(blocContext).push(
+      MaterialPageRoute(
+        builder: (context) => BlocProvider.value(
+          value: BlocProvider.of<NameCubit>(blocContext),
+          child: NameContainer(),
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 class _FeatureItem extends StatelessWidget {
