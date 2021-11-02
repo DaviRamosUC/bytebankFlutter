@@ -17,10 +17,11 @@ class DashboardContainer extends StatelessWidget {
 class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-  final name = context.read<NameCubit>().state;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome $name'),
+        title: BlocBuilder<NameCubit, String>(
+          builder: (context, state) => Text('Welcome $state'),
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,27 +31,29 @@ class DashboardView extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Image.asset('images/bytebank_logo.png'),
           ),
-          Container(
-            height: 120,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                _FeatureItem(
-                  'Transfer',
-                  Icons.monetization_on,
-                  onClick: () => _showContactsList(context),
-                ),
-                _FeatureItem(
-                  'Transaction Feed',
-                  Icons.description,
-                  onClick: () => _showTransactionsList(context),
-                ),
-                _FeatureItem(
-                  'Change Name',
-                  Icons.person_outline,
-                  onClick: () => _showChangeName(context),
-                ),
-              ],
+          SingleChildScrollView(
+            child: Container(
+              height: 120,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  _FeatureItem(
+                    'Transfer',
+                    Icons.monetization_on,
+                    onClick: () => _showContactsList(context),
+                  ),
+                  _FeatureItem(
+                    'Transaction Feed',
+                    Icons.description,
+                    onClick: () => _showTransactionsList(context),
+                  ),
+                  _FeatureItem(
+                    'Change Name',
+                    Icons.person_outline,
+                    onClick: () => _showChangeName(context),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
