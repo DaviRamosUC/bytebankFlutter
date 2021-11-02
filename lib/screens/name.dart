@@ -10,10 +10,7 @@ class NameCubit extends Cubit<String> {
 class NameContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NameCubit("Davi"),
-      child: NameView(),
-    );
+    return NameView();
   }
 }
 
@@ -25,7 +22,7 @@ class NameView extends StatelessWidget {
     //Como não é necessário fazer um rebuild da tela então
     //não é necessário chamar o BlocBuilder, sendo assim usa-se a abordagem mais limpa do Bloc
     _nameController.text = context.read<NameCubit>().state;
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: Text("Change name"),
